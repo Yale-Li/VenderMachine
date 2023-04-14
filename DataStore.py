@@ -5,7 +5,7 @@ DS1 is for VM1, DS2 is for VM2
 """
 
 class DataStore:
-    additives: list
+    pass
 
 class DS1(DataStore):
     temp_p: int

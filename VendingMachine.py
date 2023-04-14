@@ -1,6 +1,5 @@
-from DataStore import DataStore
-from DataStore import DS1
-from DataStore import DS2
+
+from DataStore import DS1, DS2
 from MDA_EFSM import MDA_EFSM
 
 class VM1:
@@ -40,6 +39,7 @@ class VM1:
 
     def cancel(self):
         self.m.cancel()
+
 
 class VM2:
     d: DS2            # point to DataStore D2

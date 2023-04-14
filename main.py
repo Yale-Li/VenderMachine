@@ -1,4 +1,5 @@
-
+from MDA_EFSM import MDA_EFSM
+from OP import OP
 
 def vm1():
     print('         Vending Machine-1')
@@ -35,4 +36,16 @@ def vm2():
 
 
 if __name__ == '__main__':
-    vm1()
+    # vm1()
+
+    m = MDA_EFSM(OP())
+    m.create()
+    m.insertCups(2)
+    m.setPrice()
+    m.coin(True)
+    m.additive(0)
+    m.additive(1)
+    m.disposeDrink(1)
+    m.coin(True)
+    m.disposeDrink(1)
+    m.cancel()

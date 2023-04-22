@@ -1,22 +1,26 @@
-
+from Factory import AbstractFactory, ConcreteFactory1, ConcreteFactory2
 from DataStore import DataStorage1, DataStorage2
 from MDA_EFSM import MDA_EFSM
+from OP import OP
 
 class VM1:
-    d: DataStorage1    # point to DataStore D1
+    ds: DataStorage1    # point to DataStore D1
     m: MDA_EFSM       # point to the MDA-EFSM
+    af: AbstractFactory
 
     def __init__(self) -> None:
-        self.d = DataStorage1()
-        self.m = MDA_EFSM()
+        af = ConcreteFactory1()
+        self.ds = af.getDataStorage()
+        op = OP(af, self.ds)
+        self.m = MDA_EFSM(op)
 
     def create(self, p: int):
-        self.d.temp_p = p
+        self.ds.temp_p = p
         self.m.create()
 
     def coin(self, v: float):
-        self.d.temp_v = v 
-        if v + self.d.cf >= self.d.price:
+        self.ds.temp_v = v 
+        if v + self.ds.cf >= self.ds.price:
             self.m.coin(True)
         else:
             self.m.coin(False)
@@ -34,7 +38,7 @@ class VM1:
         self.m.insertCups(n)
 
     def set_price(self, p: float):
-        self.d.temp_p = p
+        self.ds.temp_p = p
         self.m.setPrice()
 
     def cancel(self):
@@ -42,27 +46,30 @@ class VM1:
 
 
 class VM2:
-    d: DataStorage2            # point to DataStore D2
+    ds: DataStorage2            # point to DataStore D2
     m: MDA_EFSM       # point to the MDA-EFSM
+    af: AbstractFactory
 
     def __init__(self) -> None:
-        self.d = DataStorage2()
-        self.m = MDA_EFSM()
+        af = ConcreteFactory2()
+        self.ds = af.getDataStorage()
+        op = OP(af)
+        self.m = MDA_EFSM(op)
 
     def CREATE(self, p):
-        self.d.temp_p = p
+        self.ds.temp_p = p
         self.m.create()
 
     def COIN(self, v):
-        self.d.temp_v = v 
-        if v + self.d.cf >= self.d.price:
+        self.ds.temp_v = v 
+        if v + self.ds.cf >= self.ds.price:
             self.m.coin(True)
         else:
             self.m.coin(False)
 
     def CARD(self, x):
-        self.d.temp_v = x
-        if x > self.d.price:
+        self.ds.temp_v = x
+        if x > self.ds.price:
             self.m.coin(True)
 
     def SUGAR(self):
@@ -78,7 +85,7 @@ class VM2:
         self.m.insertCups(n)
 
     def SetPrice(self, p):
-        self.d.temp_p = p
+        self.ds.temp_p = p
         self.m.setPrice()
 
     def CANCEL(self):

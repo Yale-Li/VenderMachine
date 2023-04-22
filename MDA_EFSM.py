@@ -1,4 +1,3 @@
-# from State import State, Start, NoCups, Idle, CoinInserted
 from __future__ import annotations
 from OP import OP
 
@@ -7,7 +6,7 @@ class MDA_EFSM:
     states: list # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
     s: State    # pint to current state
 
-    def __init__(self, op: OP = OP()) -> None:
+    def __init__(self, op: OP) -> None:
         d = StateData()
         self.states = [Start(op, self, d), NoCups(op, self, d), Idle(op, self, d), CoinInserted(op, self, d)]
         self.s = self.states[0]
@@ -97,14 +96,13 @@ class NoCups(State):
             self.op.ZeroCF()
             self.m.changeState(2)
 
+
 class Idle(State):
     """
     State Idle
     """
     def coin(self, c: bool):
-        
         self.op.IncreaseCF()
-
         if c:
             self.m.changeState(3)
 

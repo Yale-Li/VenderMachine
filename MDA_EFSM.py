@@ -7,7 +7,7 @@ class MDA_EFSM:
     states: list # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
     s: State    # pint to current state
 
-    def __init__(self, op: OP) -> None:
+    def __init__(self, op: OP = OP()) -> None:
         d = StateData()
         self.states = [Start(op, self, d), NoCups(op, self, d), Idle(op, self, d), CoinInserted(op, self, d)]
         self.s = self.states[0]
@@ -34,12 +34,16 @@ class MDA_EFSM:
         self.s.cancel()
 
     def changeState(self, s: int):
-        print(f'change sate to {s}')
+        # todo: delete
+        tem_dic = {0: 'Start', 1: 'NoCups', 2: 'Idle', 3: 'CoinInserted'}
+        print(f'change sate to {tem_dic[s]}')
         self.s = self.states[s]
+
 
 class StateData:
     cups: int = 0
     A: list = [0]*10
+
 
 class State:
     """
@@ -128,6 +132,7 @@ class CoinInserted(State):
     def disposeDrink(self, id: int):
         self.op.DisposeDrink(id)
         self.op.DisposeAdditives(self.d.A)
+        self.d.A = [0]*10
 
         if self.d.cups > 1:
             self.op.ZeroCF()
@@ -136,4 +141,3 @@ class CoinInserted(State):
         else:
             self.d.cups = 0
             self.m.changeState(1)
-        print(self.d.cups, self.d.A)

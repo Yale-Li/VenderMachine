@@ -1,7 +1,7 @@
-from MDA_EFSM import MDA_EFSM
-from OP import OP
+from VendingMachine import VM1, VM2
 
 def vm1():
+    vm1 = VM1()
     print('         Vending Machine-1')
     print('     MENU of Operations')
     print('0. create(int)')
@@ -15,8 +15,36 @@ def vm1():
     print('q. Quit the demo program')
     print(' Please make a note of these operations')
     print('         Vending Machine-1 Execution')
-    cmd =  input()
-
+    cmd =  ''
+    while cmd != 'q':
+        print('0. create(int), 1. coin(int), 2. sugar(), 3. tea(), 4. latte(), 5. insert_cups(int), 6. set_price(float), 7. cancel()')
+        cmd = input('Enter operation code: ')
+        if cmd == '0':
+            n = input('Enter number of price: ')
+            vm1.create(int(n))
+        elif cmd == '1':
+            n = input('Enter number of coin: ')
+            vm1.coin(float(n))
+        elif cmd == '2':
+            print('Operation: sugar()')
+            vm1.sugar()
+        elif cmd == '3':
+            print('Operation: tea()')
+            vm1.tea()
+        elif cmd == '4':
+            print('Operation: latte()')
+            vm1.latte()
+        elif cmd == '5':
+            n = input('Enter number of cups: ')
+            vm1.insert_cups(int(n))
+        elif cmd == '6':
+            p = input('Enter price: ')
+            vm1.set_price(float(p))
+        elif cmd == '7':
+            print('Operation: cancel()')
+            vm1.cancel()
+        else:
+            print('Invalid operation code')
 
 
 def vm2():
@@ -36,16 +64,4 @@ def vm2():
 
 
 if __name__ == '__main__':
-    # vm1()
-
-    m = MDA_EFSM(OP())
-    m.create()
-    m.insertCups(2)
-    m.setPrice()
-    m.coin(True)
-    m.additive(0)
-    m.additive(1)
-    m.disposeDrink(1)
-    m.coin(True)
-    m.disposeDrink(1)
-    m.cancel()
+    vm1()

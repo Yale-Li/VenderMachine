@@ -1,6 +1,13 @@
 from DataStore import DataStore
+"""
+This file contains the strategies for the operations.
+"""
+
 
 class SP:
+    """
+    This class is the strategy for StorePrice.
+    """
     ds: DataStore
 
     def StorePrice(self):
@@ -14,7 +21,11 @@ class SP2(SP):
     def StorePrice(self):
         self.ds.price = self.ds.temp_p
 
+
 class ZCF:
+    """
+    This class is the strategy for reset .
+    """
     ds: DataStore
 
     def ZeroCF(self):
@@ -27,6 +38,7 @@ class ZCF1(ZCF):
 class ZCF2(ZCF):
     def ZeroCF(self):
         self.ds.cf = 0
+
 
 class ICF:
     ds: DataStore
@@ -42,6 +54,7 @@ class ICF2(ICF):
     def IncreaseCF(self):
         self.ds.cf += self.ds.temp_v
 
+
 class RC:
     ds: DataStore
 
@@ -50,17 +63,25 @@ class RC:
 
 class RC1(RC):
     def ReturnCoins(self):
-        print('Return Coins: ', self.ds.cf)
-        self.ds.cf = 0
+        if self.ds.temp_v > 0:
+            self.ds.temp_v = 0
+            print('Return Coins: ', self.ds.temp_v)
+        else:
+            self.ds.cf = 0
+            print('Return Coins: ', self.ds.temp_v)
+        
 
 class RC2(RC):
     def ReturnCoins(self):
-        print('Return Coins: ', self.ds.cf)
-        self.ds.cf = 0
+        if self.ds.temp_v > 0:
+            self.ds.temp_v = 0
+            print('Return Coins: ', self.ds.temp_v)
+        else:
+            self.ds.cf = 0
+            print('Return Coins: ', self.ds.temp_v)
+
 
 class DD:
-    ds: DataStore
-
     def DisposeDrink(self, id: int):
         pass
 
@@ -72,9 +93,8 @@ class DD2(DD):
     def DisposeDrink(self, id: int):
         print('Dispose Drink: ', id)
 
-class DA:
-    ds: DataStore
 
+class DA:
     def DisposeAdditives(self, A: list):
         pass
 

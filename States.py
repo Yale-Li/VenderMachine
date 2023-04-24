@@ -1,10 +1,13 @@
 from __future__ import annotations
 from OP import OP
 
+"""
+This file implements the state pattern.
+"""
 
 class MDA_EFSM:
-    states: list # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
-    s: State    # pint to current state
+    states: list    # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
+    s: State        # pint to current state
 
     def __init__(self, op: OP) -> None:
         d = StateData()

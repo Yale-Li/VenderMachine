@@ -1,6 +1,6 @@
 from Factory import AbstractFactory, ConcreteFactory1, ConcreteFactory2
 from DataStore import DataStorage1, DataStorage2
-from MDA_EFSM import MDA_EFSM
+from States import MDA_EFSM
 from OP import OP
 
 class VM1:

@@ -8,6 +8,7 @@ from OP import OP
 This file contains the two Vending Machines, VM1 and VM2.
 """
 
+
 class VM1:
     ds: DataStorage1    # point to DataStore D1
     m: MDA_EFSM       # point to the MDA-EFSM
@@ -24,12 +25,12 @@ class VM1:
         self.m.create()
 
     def coin(self, v: float):
-        self.ds.temp_v = v 
+        self.ds.temp_v = v
         if v + self.ds.cf >= self.ds.price:
             self.m.coin(True)
         else:
             self.m.coin(False)
-    
+
     def sugar(self):
         self.m.additive(0)
 
@@ -66,16 +67,15 @@ class VM2:
         self.m.create()
 
     def COIN(self, v):
-        self.ds.temp_v = v 
+        self.ds.temp_v = v
         if v + self.ds.cf >= self.ds.price:
             self.m.coin(True)
         else:
             self.m.coin(False)
 
     def CARD(self, x):
-        self.ds.temp_v = x
         if x > self.ds.price:
-            self.m.coin(True)
+            self.m.card()
 
     def SUGAR(self):
         self.m.additive(0)

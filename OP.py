@@ -7,6 +7,7 @@ from Factory import AbstractFactory
 This file implements the Operation class.
 """
 
+
 class OP:
     ds: DataStore
     sp: SP
@@ -23,7 +24,7 @@ class OP:
         self.rc = af.getRC()
         self.dd = af.getDD()
         self.da = af.getDA()
-        
+
         self.ds = ds
         self.sp.ds = self.ds
         self.zcf.ds = self.ds
@@ -51,4 +52,3 @@ class OP:
 
     def DisposeAdditives(self, A: list):
         self.da.DisposeAdditives(A)
-

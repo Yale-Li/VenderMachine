@@ -5,6 +5,7 @@ from VendingMachine import VM1, VM2
     Driver.py
 """
 
+
 def vm1():
     vm1 = VM1()
     print('         Vending Machine-1')
@@ -20,7 +21,7 @@ def vm1():
     print('q. Quit the demo program')
     print(' Please make a note of these operations')
     print('         Vending Machine-1 Execution')
-    cmd =  ''
+    cmd = ''
     while cmd != 'q':
         print('0. create(int), 1. coin(int), 2. sugar(), 3. tea(), 4. latte(), 5. insert_cups(int), 6. set_price(float), 7. cancel()')
         cmd = input('Enter operation code: ')

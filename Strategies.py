@@ -1,12 +1,14 @@
 from DataStore import DataStore
-"""
-This file contains the strategies for the operations.
-"""
 
+
+"""
+This file Implements the strategy pattern.
+"""
 
 class SP:
     """
-    This class is the strategy for StorePrice.
+    This class is the strategy of StorePrice.
+    Save the temporary price to the data store.
     """
     ds: DataStore
 
@@ -24,7 +26,8 @@ class SP2(SP):
 
 class ZCF:
     """
-    This class is the strategy for reset .
+    This class is the strategy of ZeroCF.
+    Reset the number of coins inserted to zero.
     """
     ds: DataStore
 
@@ -41,6 +44,10 @@ class ZCF2(ZCF):
 
 
 class ICF:
+    """
+    This class is the strategy of IncreaseCF.
+    Increase the number of coins inserted by the amount of the current coin.
+    """
     ds: DataStore
 
     def IncreaseCF(self):
@@ -49,13 +56,19 @@ class ICF:
 class ICF1(ICF):
     def IncreaseCF(self):
         self.ds.cf += self.ds.temp_v
+        self.ds.temp_v = 0
 
 class ICF2(ICF):
     def IncreaseCF(self):
         self.ds.cf += self.ds.temp_v
+        self.ds.temp_v = 0
 
 
 class RC:
+    """
+    This class is the strategy of ReturnCoins.
+    Return the coins inserted.
+    """
     ds: DataStore
 
     def ReturnCoins(self):
@@ -63,25 +76,28 @@ class RC:
 
 class RC1(RC):
     def ReturnCoins(self):
-        if self.ds.temp_v > 0:
-            self.ds.temp_v = 0
-            print('Return Coins: ', self.ds.temp_v)
-        else:
-            self.ds.cf = 0
-            print('Return Coins: ', self.ds.temp_v)
-        
+            if self.ds.temp_v > 0:
+                print('Return Coins: ', self.ds.temp_v)
+                self.ds.temp_v = 0
+            else:
+                print('Return All Coins: ', self.ds.cf)
+                self.ds.cf = 0
 
 class RC2(RC):
     def ReturnCoins(self):
-        if self.ds.temp_v > 0:
-            self.ds.temp_v = 0
-            print('Return Coins: ', self.ds.temp_v)
-        else:
-            self.ds.cf = 0
-            print('Return Coins: ', self.ds.temp_v)
+            if self.ds.temp_v > 0:
+                print('Return Coins: ', self.ds.temp_v)
+                self.ds.temp_v = 0
+            else:
+                print('Return All Coins: ', self.ds.cf)
+                self.ds.cf = 0
 
 
 class DD:
+    """
+    This class is the strategy of DisposeDrink.
+    Dispose the drink.
+    """
     def DisposeDrink(self, id: int):
         pass
 
@@ -95,6 +111,10 @@ class DD2(DD):
 
 
 class DA:
+    """
+    This class is the strategy of DisposeAdditives.
+    Dispose the additives.
+    """
     def DisposeAdditives(self, A: list):
         pass
 

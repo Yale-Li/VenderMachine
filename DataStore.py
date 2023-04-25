@@ -1,5 +1,5 @@
 """
-DataStore of MDA-EFSM, store the platform specific data
+DataStore of MDA-EFSM pattern, store the platform specific data
 
 DS1 is for VM1, DS2 is for VM2
 """

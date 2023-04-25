@@ -3,6 +3,11 @@ from DataStore import DataStorage1, DataStorage2
 from States import MDA_EFSM
 from OP import OP
 
+
+"""
+This file contains the two Vending Machines, VM1 and VM2.
+"""
+
 class VM1:
     ds: DataStorage1    # point to DataStore D1
     m: MDA_EFSM       # point to the MDA-EFSM
@@ -47,7 +52,7 @@ class VM1:
 
 class VM2:
     ds: DataStorage2            # point to DataStore D2
-    m: MDA_EFSM       # point to the MDA-EFSM
+    m: MDA_EFSM                 # point to the MDA-EFSM
     af: AbstractFactory
 
     def __init__(self) -> None:

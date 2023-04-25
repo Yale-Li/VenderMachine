@@ -2,6 +2,11 @@ from DataStore import DataStore
 from Strategies import SP, ZCF, ICF, RC, DD, DA
 from Factory import AbstractFactory
 
+
+"""
+This file implements the Operation class.
+"""
+
 class OP:
     ds: DataStore
     sp: SP

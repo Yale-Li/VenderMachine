@@ -1,17 +1,21 @@
 from __future__ import annotations
 from OP import OP
 
+
 """
-This file implements the state pattern.
+This file implements the Decentralized state pattern.
 """
 
 class MDA_EFSM:
+    """
+    Context of the state pattern
+    """
     states: list    # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
     s: State        # pint to current state
 
     def __init__(self, op: OP) -> None:
         d = StateData()
-        self.states = [Start(op, self, d), NoCups(op, self, d), Idle(op, self, d), CoinInserted(op, self, d)]
+        self.states = [Start(self, d, op), NoCups(self, d, op), Idle(self, d, op), CoinInserted(self, d, op)]
         self.s = self.states[0]
 
     def create(self):
@@ -55,10 +59,10 @@ class State:
     m: MDA_EFSM
     d: StateData
 
-    def __init__(self, op: OP, m: MDA_EFSM, d: StateData) -> None:
-        self.op = op
+    def __init__(self, m: MDA_EFSM, d: StateData,  op: OP) -> None:
         self.m = m
         self.d = d
+        self.op = op
 
     def create(self):
         pass
@@ -77,6 +81,7 @@ class State:
     def cancel(self):
         pass
 
+
 class Start(State):
     """
     State Start
@@ -85,6 +90,7 @@ class Start(State):
         self.op.StorePrice()
         self.d.cups = 0
         self.m.changeState(1)
+
 
 class NoCups(State):
     """
@@ -106,11 +112,15 @@ class Idle(State):
     """
     def coin(self, c: bool):
         self.op.IncreaseCF()
-        if c:
+
+        if c == True:
+            self.d.A = [0]*10
             self.m.changeState(3)
+
 
     def card(self):
         self.op.ZeroCF()
+        self.d.A = [0]*10
         self.m.changeState(3)
 
     def insertCups(self, n: int):
@@ -119,6 +129,7 @@ class Idle(State):
     
     def setPrice(self):
         self.op.StorePrice()
+
 
 class CoinInserted(State):
     """
@@ -133,7 +144,6 @@ class CoinInserted(State):
     def disposeDrink(self, id: int):
         self.op.DisposeDrink(id)
         self.op.DisposeAdditives(self.d.A)
-        self.d.A = [0]*10
 
         if self.d.cups > 1:
             self.op.ZeroCF()
@@ -142,3 +152,7 @@ class CoinInserted(State):
         else:
             self.d.cups = 0
             self.m.changeState(1)
+
+    def cancel(self):
+        self.op.ReturnCoins()
+        self.m.changeState(2)

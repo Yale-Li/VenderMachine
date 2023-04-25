@@ -1,5 +1,5 @@
 # VenderMachine
 
-- written by python3
+- This program is written by python3
 
-- To excute this program, run 'python3 main.py'
+- To excute this program, run `python3 Driver.py`

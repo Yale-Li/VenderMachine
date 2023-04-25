@@ -1,6 +1,11 @@
 import DataStore
 import Strategies
 
+
+"""
+This file implements the Abstract Factory pattern.
+"""
+
 class AbstractFactory:
     def __init__(self) -> None:
         pass
@@ -25,6 +30,7 @@ class AbstractFactory:
 
     def getDA(self):
         pass
+
 
 class ConcreteFactory1(AbstractFactory):
     def __init__(self) -> None:

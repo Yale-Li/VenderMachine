@@ -59,21 +59,21 @@ class VM2:
     def __init__(self) -> None:
         af = ConcreteFactory2()
         self.ds = af.getDataStorage()
-        op = OP(af)
+        op = OP(af, self.ds)
         self.m = MDA_EFSM(op)
 
-    def CREATE(self, p):
+    def CREATE(self, p: float):
         self.ds.temp_p = p
         self.m.create()
 
-    def COIN(self, v):
+    def COIN(self, v: int):
         self.ds.temp_v = v
         if v + self.ds.cf >= self.ds.price:
             self.m.coin(True)
         else:
             self.m.coin(False)
 
-    def CARD(self, x):
+    def CARD(self, x: int):
         if x > self.ds.price:
             self.m.card()
 
@@ -84,13 +84,13 @@ class VM2:
         self.m.additive(1)
 
     def COFFEE(self):
-        self.m.additive(1)
+        self.m.disposeDrink(0)
 
-    def InsertCups(self, n):
+    def InsertCups(self, n: int):
         self.m.insertCups(n)
 
-    def SetPrice(self, p):
-        self.ds.temp_p = p
+    def SetPrice(self, p: int):
+        self.ds.temp_p = float(p)
         self.m.setPrice()
 
     def CANCEL(self):

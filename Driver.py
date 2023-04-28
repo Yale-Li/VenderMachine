@@ -2,7 +2,7 @@ from VendingMachine import VM1, VM2
 
 
 """
-    Driver.py
+    Driver.py is the driver program for the Vending Machine
 """
 
 
@@ -24,7 +24,7 @@ def vm1():
     cmd = ''
     vm1 = VM1()
     while cmd != 'q':
-        print('0. create(int), 1. coin(int), 2. sugar(), 3. tea(), 4. latte(), 5. insert_cups(int), 6. set_price(float), 7. cancel()')
+        print('\n0. create(int), 1. coin(int), 2. sugar(), 3. tea(), 4. latte(), 5. insert_cups(int), 6. set_price(float), 7. cancel()')
         cmd = input('Enter operation code: ')
         if cmd == '0':
             n = input('Enter number of price: ')
@@ -51,15 +51,15 @@ def vm1():
             print('Operation: cancel()')
             vm1.cancel()
         else:
-            print('Invalid operation code')
+            print('quit')
 
 
 def vm2():
-    print('         Vending Machine-2 Execution')
+    print('         Vending Machine-2')
     cmd = ''
     vm2 = VM2()
     while cmd != 'q':
-        print('0. CREATE(float), 1. COIN(int), 2. CARD(int), 3. SUGAR(), 4. CREAM(), 5. COFFEE(int), 6. InsertCups(int), 7. SetPrice(), 8. CANCEL()')
+        print('\n0. CREATE(float), 1. COIN(int), 2. CARD(int), 3. SUGAR(), 4. CREAM(), 5. COFFEE(int), 6. InsertCups(int), 7. SetPrice(), 8. CANCEL()')
         cmd = input('Enter operation code: ')
         if cmd == '0':
             p = input('Enter price: ')
@@ -89,9 +89,14 @@ def vm2():
             print('Operation: CANCEL()')
             vm2.CANCEL()
         else:
-            print('Invalid operation code')
+            print('quit')
         
 
 
 if __name__ == '__main__':
-    vm1()
+    print('Select a Vending Machine: 1. VM1, 2. VM2')
+    m = input('Enter your choice: ')
+    if m == '1':
+        vm1()
+    elif m == '2':
+        vm2()

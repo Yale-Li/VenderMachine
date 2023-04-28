@@ -10,9 +10,12 @@ This file contains the two Vending Machines, VM1 and VM2.
 
 
 class VM1:
+    """
+    VM1 is a Vending Machine that uses the MDA-EFSM pattern.
+    """
     ds: DataStorage1    # point to DataStore D1
-    m: MDA_EFSM       # point to the MDA-EFSM
-    af: AbstractFactory
+    m: MDA_EFSM         # point to the MDA-EFSM
+    af: AbstractFactory 
 
     def __init__(self) -> None:
         af = ConcreteFactory1()
@@ -52,6 +55,9 @@ class VM1:
 
 
 class VM2:
+    """
+    VM2 is a Vending Machine that uses the MDA-EFSM pattern.
+    """
     ds: DataStorage2            # point to DataStore D2
     m: MDA_EFSM                 # point to the MDA-EFSM
     af: AbstractFactory

@@ -3,14 +3,14 @@ import Strategies
 
 
 """
-This file implements the Abstract Factory pattern.
+This file implements the Abstract Factory Pattern.
 """
 
 
 class AbstractFactory:
-    def __init__(self) -> None:
-        pass
-
+    """
+    Abstract Factory, define the interface of the factory
+    """
     def getDataStorage(self):
         pass
 
@@ -34,9 +34,9 @@ class AbstractFactory:
 
 
 class ConcreteFactory1(AbstractFactory):
-    def __init__(self) -> None:
-        pass
-
+    """
+    Concrete Factory, implement the interface of the factory
+    """
     def getDataStorage(self):
         return DataStore.DataStorage1()
 
@@ -60,9 +60,9 @@ class ConcreteFactory1(AbstractFactory):
 
 
 class ConcreteFactory2(AbstractFactory):
-    def __init__(self) -> None:
-        pass
-
+    """
+    Concrete Factory, implement the interface of the factory
+    """
     def getDataStorage(self):
         return DataStore.DataStorage2()
 

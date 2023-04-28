@@ -9,7 +9,6 @@ This file implements the Operation class.
 
 
 class OP:
-    ds: DataStore
     sp: SP
     zcf: ZCF
     icf: ICF
@@ -25,13 +24,10 @@ class OP:
         self.dd = af.getDD()
         self.da = af.getDA()
 
-        self.ds = ds
-        self.sp.ds = self.ds
-        self.zcf.ds = self.ds
-        self.icf.ds = self.ds
-        self.rc.ds = self.ds
-        self.dd.ds = self.ds
-        self.da.ds = self.ds
+        self.sp.ds = ds
+        self.zcf.ds = ds
+        self.icf.ds = ds
+        self.rc.ds = ds
 
     def StorePrice(self):
         self.sp.StorePrice()
@@ -46,8 +42,6 @@ class OP:
         self.rc.ReturnCoins()
 
     def DisposeDrink(self, id: int):
-        tem_dic = {0: 'coffe', 1: 'Latte', 2: 'Tea'}
-        print('Here is your drink: ', tem_dic[id])
         self.dd.DisposeDrink(id)
 
     def DisposeAdditives(self, A: list):

@@ -1,3 +1,4 @@
+
 """
 DataStore of MDA-EFSM pattern, store the platform specific data
 
@@ -6,6 +7,9 @@ DS1 is for VM1, DS2 is for VM2
 
 
 class DataStore:
+    """
+    DataStore class, the abstract class of all data stores.
+    """
     pass
 
 

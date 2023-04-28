@@ -3,13 +3,13 @@ from OP import OP
 
 
 """
-This file implements the Decentralized state pattern.
+This file implements the Decentralized State Pattern.
 """
 
 
 class MDA_EFSM:
     """
-    Context of the state pattern
+    MDA-EFSM class, the context of the state machine.
     """
     states: list    # 0: Start, 1: NoCups, 2: Idle, 3: CoinInserted
     s: State        # pint to current state
@@ -52,13 +52,16 @@ class MDA_EFSM:
 
 
 class StateData:
+    """
+    StateData class, the data structure of all states.
+    """
     cups: int = 0
     A: list = [0]*10
 
 
 class State:
     """
-    Abstract class
+    State class, the abstract class of all states.
     """
     op: OP
     m: MDA_EFSM

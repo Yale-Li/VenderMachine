@@ -2,7 +2,7 @@ from DataStore import DataStore
 
 
 """
-This file Implements the strategy pattern.
+This file Implements the Strategy Pattern.
 """
 
 
@@ -112,14 +112,16 @@ class DD:
         pass
 
 
+drink = ['coffee', 'latte', 'tea']
+
 class DD1(DD):
     def DisposeDrink(self, id: int):
-        print('Dispose Drink: ', id)
+        print('Dispose Drink: ', drink[id])
 
 
 class DD2(DD):
     def DisposeDrink(self, id: int):
-        print('Dispose Drink: ', id)
+        print('Dispose Drink: ', drink[id])
 
 
 class DA:
